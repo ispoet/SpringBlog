@@ -1,3 +1,6 @@
+server:
+    port: 8080
+
 spring:
     profiles:
         active: dev
@@ -18,9 +21,9 @@ spring:
 
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://127.0.0.1/spring_blog_dev?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://188.131.176.163/spring_blog_dev?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password:
+        password: root
 
         hikari:
             data-source-properties:
@@ -29,11 +32,28 @@ spring:
                 prepStmtCacheSqlLimit: 2048
                 useServerPrepStmts: true
     redis:
-      host: localhost
+      host: 188.131.176.163
       port: 6379
       default_expire_time: 86400
+
+    resources:
+          add-mappings: true
+          cache-period:
+          chain:
+            cache: true
+            gzipped: false
+            html-application-cache: false
+            strategy:
+              content:
+                enabled: false
+                paths: /**
+              fixed:
+                enabled: false
+                paths: /**
+          static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
 
 logging:
   level:
     org.springframework.web: ERROR
-    com.raysmond.blog: DEBUG
+    com.ispoet.blog: DEBUG
